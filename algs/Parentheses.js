@@ -1,4 +1,3 @@
-// Exercise 1.3.4
 const Stack = require('../structs/stack')
 
 const RIGHT_HAND_OPERATORS = [')', ']', '}']
