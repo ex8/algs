@@ -23,6 +23,10 @@ class Stack {
     return this.a.length
   }
 
+  toArray() {
+    return this.a
+  }
+
   [Symbol.iterator]() {
     let i = 0
     return {

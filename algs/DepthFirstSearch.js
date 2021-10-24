@@ -1,4 +1,4 @@
-const Graph = require('./Graph')
+// const Graph = require('./Graph')
 
 class DepthFirstSearch {
   constructor(G, s) {
@@ -27,9 +27,9 @@ class DepthFirstSearch {
 module.exports = DepthFirstSearch
 
 // tests
-const g = new Graph(3)
-g.addEdge(0, 2)
-console.log(g)
+// const g = new Graph(3)
+// g.addEdge(0, 2)
+// console.log(g)
 
-const s = new DepthFirstSearch(g, 2)
-console.log(s)
+// const s = new DepthFirstSearch(g, 2)
+// console.log(s)
