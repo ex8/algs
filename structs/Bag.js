@@ -29,9 +29,9 @@ class Bag {
 module.exports = Bag
 
 // tests
-const b = new Bag()
-b.add(1, 1.5, 2, 3, 4, 10)
-for (const n of b) {
-  console.log(n)
-}
-console.log(b.isEmpty())
+// const b = new Bag()
+// b.add(1, 1.5, 2, 3, 4, 10)
+// for (const n of b) {
+//   console.log(n)
+// }
+// console.log(b.isEmpty())

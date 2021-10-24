@@ -1,29 +1,16 @@
-const Queue = require('./Queue')
-
-const colors = {
-  RED: true,
-  BLACK: false,
-}
+const Queue = require('../structs/Queue')
 
 class Node {
-  constructor(k, v, N, left, right, color) {
+  constructor(k, v, N, left, right) {
     this.k = k
     this.v = v
-    this.N = N          // num of nodes in subtree (including itself)
+    this.N = N // num of nodes in subtree (including itself)
     this.left = left
     this.right = right
-    this.color = color  // color of link from parent
   }
 }
 
-// RedBlackBST impls perfectly balanced BST
-// O(lg(n)) insert & search
-// 1. Red links lean left
-// 2. No node n has two red links connected to it
-// 3. The tree has `perfect black balance` such that every path from the root
-//    to a null link has the same number of black links
-//    also known as tree's black height
-export class RedBlackBST {
+class BST {
   constructor() {
     this.root = null
   }
@@ -51,22 +38,17 @@ export class RedBlackBST {
 
   put(k, v) {
     this.root = this.putImpl(this.root, k, v)
-    this.root.color = colors.BLACK
   }
 
   // update n's value to v if k in subtree
   // otherwise add a new node
-  // rotate tree to ensure perfect balance
   // re-calculate N
   putImpl(n, k, v) {
-    if (!n) return new Node(k, v, 1, colors.RED)
+    if (!n) return new Node(k, v, 1)
     const cmp = this.less(k, n.k)
     if (cmp < 0) n.left = this.putImpl(n.left, k, v)
     else if (cmp > 0) n.right = this.putImpl(n.right, k, v)
     else n.v = v
-    if (this.isRed(n.right) && !this.isRed(n.left)) n = this.rotateLeft(n)
-    if (this.isRed(n.left) && this.isRed(n.left.left)) n = this.rotateRight(n)
-    if (this.isRed(n.left) && this.isRed(n.right)) this.flipcolors(n)
     n.N = this.sizeImpl(n.left) + this.sizeImpl(n.right) + 1
     return n
   }
@@ -112,7 +94,7 @@ export class RedBlackBST {
     if (!n) return
     const t = this.sizeImpl(n.left)
     if (t > k) return this.selectImpl(n.left, k)
-    else if (t < k) return this.selectImpl(n.right, k - t - 1)
+    else if (t < k) return this.selectImpl(n.right, k-t-1)
     else return n
   }
 
@@ -129,21 +111,37 @@ export class RedBlackBST {
     else return this.sizeImpl(n.left)
   }
 
-
+  
   deleteMin() {
-    throw new Error('not yet impl')
+    return this.deleteMinImpl(this.root)
   }
 
   deleteMinImpl(n) {
-    throw new Error('not yet impl')
+    if (!n.left) return n.right
+    n.left = this.deleteMinImpl(n.left)
+    n.N = this.sizeImpl(n.left) + this.sizeImpl(n.right) + 1
+    return n
   }
 
   delete(k) {
-    throw new Error('not yet impl')
+    this.root = this.deleteImpl(this.root, k)
   }
 
   deleteImpl(n, k) {
-    throw new Error('not yet impl')
+    if (!n) return
+    const cmp = this.less(k, n.k)
+    if (cmp < 0) n.left = this.deleteImpl(n.left, k)
+    else if (cmp > 0) n.right = this.deleteImpl(n.right, k)
+    else {
+      if (!n.right) return n.left
+      if (!n.left) return n.right
+      const t = n
+      n = this.minImpl(t.right)
+      n.right = this.deleteMinImpl(t.right)
+      n.left = t.left
+    }
+    n.N = this.sizeImpl(n.left) + this.sizeImpl(n.right) + 1
+    return n
   }
 
   keys(lo = this.min().k, hi = this.max().k) {
@@ -185,39 +183,6 @@ export class RedBlackBST {
     return 1 + Math.max(this.heightImpl(n.left), this.heightImpl(n.right))
   }
 
-  isRed(n) {
-    if (!n) return false
-    return n.color === colors.RED
-  }
-
-  rotateLeft(n) {
-    const t = n.right
-    n.right = t.left
-    t.left = n
-    t.color = n.color
-    n.color = colors.RED
-    t.N = n.N
-    n.N = this.sizeImpl(n.left) + this.sizeImpl(n.right) + 1
-    return t
-  }
-
-  rotateRight(n) {
-    const t = n.left
-    n.left = t.right
-    t.left = n
-    t.color = n.color
-    n.color = colors.RED
-    t.N = n.N
-    n.N = this.sizeImpl(n.left) + this.sizeImpl(n.right) + 1
-    return t
-  }
-
-  flipcolors(n) {
-    n.color = colors.RED
-    n.left.color = colors.BLACK
-    n.right.color = colors.BLACK
-  }
-
   less(a, b) {
     if (a < b) return -1
     else if (a > b) return 1
@@ -225,4 +190,4 @@ export class RedBlackBST {
   }
 }
 
-module.exports = RedBlackBST
+module.exports = BST
