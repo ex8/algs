@@ -1,4 +1,4 @@
-const Queue = require('../structs/Queue')
+const { Queue } = require('../structs')
 
 const colors = {
   RED: true,

@@ -1,4 +1,4 @@
-const Stack = require('../structs/Stack')
+const { Stack } = require('../structs')
 
 class DepthFirstPaths {
   constructor(G, s) {

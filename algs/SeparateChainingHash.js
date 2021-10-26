@@ -1,4 +1,4 @@
-const LinkedBag = require('../structs/LinkedBag')
+const { LinkedBag } = require('../structs')
 
 const P = 997 // prime
 

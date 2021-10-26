@@ -1,4 +1,4 @@
-const Stack = require('../structs/stack')
+const { Stack } = require('../structs')
 
 const RIGHT_HAND_OPERATORS = [')', ']', '}']
 

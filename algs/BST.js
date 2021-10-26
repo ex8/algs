@@ -1,4 +1,4 @@
-const Queue = require('../structs/Queue')
+const { Queue } = require('../structs')
 
 class Node {
   constructor(k, v, N, left, right) {

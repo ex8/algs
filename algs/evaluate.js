@@ -1,6 +1,6 @@
 // Expression Evaluation
 
-const Stack = require('../structs/stack')
+const { Stack } = require('../structs')
 
 const OPERATORS = ['+', '-', '*', '/', '']
 
