@@ -2,8 +2,8 @@ const Stack = require('../structs/Stack')
 
 class DepthFirstPaths {
   constructor(G, s) {
-    this.marked = new Array(G.V()).fill(false)
-    this.edgeTo = new Array(G.V())
+    this.marked = new Array(G.V()).fill(false)  // has dfs() been called for v?
+    this.edgeTo = new Array(G.V())              // index = vertex, value = last vertex on known path
     this.s = s
     this.dfs(G, s)
   }

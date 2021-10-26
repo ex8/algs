@@ -1,7 +1,7 @@
 // index j
 // children of j is 2*j and 2*j+1
 // parent of j is floor(j/2)
-// for sort, use sink
+// for heap-sort, use sink based impl
 
 class MinHeap {
   constructor() {
