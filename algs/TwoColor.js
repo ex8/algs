@@ -1,3 +1,4 @@
+// is bigraph?
 class TwoColor {
   constructor(G) {
     this.marked = new Array(G.V()).fill(false)

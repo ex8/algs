@@ -1,5 +1,4 @@
-const { Queue, Stack } = require('../structs')
-const Graph = require('./Graph')
+const { Queue, Stack, Graph } = require('../structs')
 
 class BreadthFirstPaths {
   constructor(G, s) {
@@ -45,10 +44,11 @@ class BreadthFirstPaths {
 
 module.exports = BreadthFirstPaths
 
-const g = new Graph(3)
-g.addEdge(0, 1)
-g.addEdge(1, 2)
+// tests
+// const g = new Graph(3)
+// g.addEdge(0, 1)
+// g.addEdge(1, 2)
 
-const bfs = new BreadthFirstPaths(g, 0)
-console.log(bfs.pathTo(2)) // [2, 1, 0]
-console.log(bfs.pathTo(1)) // [1, 0]
+// const bfs = new BreadthFirstPaths(g, 0)
+// console.log(bfs.pathTo(2)) // [2, 1, 0]
+// console.log(bfs.pathTo(1)) // [1, 0]

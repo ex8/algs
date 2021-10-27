@@ -89,9 +89,10 @@ class ST {
 
 module.exports = ST
 
-const st = new ST()
-st.put(6, 'six')
-st.put(4, 'four')
-st.put(2, 'two')
-st.put(5, 'five')
-console.log(st)
+// tests
+// const st = new ST()
+// st.put(6, 'six')
+// st.put(4, 'four')
+// st.put(2, 'two')
+// st.put(5, 'five')
+// console.log(st)
