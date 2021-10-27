@@ -29,7 +29,7 @@ class Graph {
   }
 
   toString() {
-    let s = `${this.V} vertices, ${this.E} edges\n`
+    let s = `${this.vertices} vertices, ${this.edges} edges\n`
     for (let v = 0; v < this.V; v++) {
       s += `${v}: `
       for (const w of this.adjacent(v)) s += `${w} `
