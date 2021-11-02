@@ -2,18 +2,18 @@ class CC {
   constructor(G) {
     this.marked = new Array(G.V()).fill(false)
     this.id = new Array(G.V())
-    this.count = 0
+    this.c = 0
     for (let s = 0; s < G.V(); s++) {
       if (!this.marked[s]) {
         this.dfs(G, s)
-        this.count++
+        this.c++
       }
     }
   }
 
   dfs(G, v) {
     this.marked[v] = true
-    this.id[v] = this.count
+    this.id[v] = this.c
     for (const w of G.adjacent(v)) {
       if (!marked[w]) this.dfs(G, w)
     }
@@ -26,7 +26,7 @@ class CC {
 
   // num of connected components
   count() {
-    return this.count
+    return this.c
   }
 
   // component identifer for v; between(0, count()-1)
