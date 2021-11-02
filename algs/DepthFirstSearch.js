@@ -16,7 +16,7 @@ class DepthFirstSearch {
   }
 
   isMarked(w) {
-    return this.marked(w)
+    return this.marked[w]
   }
 
   count() {
